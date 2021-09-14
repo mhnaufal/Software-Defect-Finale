@@ -44,4 +44,4 @@ def preprocess(file):
     return {"defect": defect, "not": not_defect}
 
 
-print(preprocess("src/datasets/pc4.csv"))
+print(preprocess("datasets/processed/pc4.csv"))
