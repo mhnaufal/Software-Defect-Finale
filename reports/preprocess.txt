@@ -1,0 +1,8 @@
++----- PREPROCESSING LOGGER -----+
+Timestamp:  15:52:33 14-09-2021
+Platform:  Windows - DESKTOP-9AHSIL3 - AMD64
+
+{'defect': defects    178
+dtype: int64, 'not': defects    1280
+dtype: int64}
++--------------------------------+
