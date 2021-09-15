@@ -45,38 +45,50 @@ def preprocess(file):
     defect = y[y["defects"] == True].count()
     not_defect = y[y["defects"] == False].count()
 
+    # Print the bar diagram
+    plt.bar(
+        ["True", "False"],
+        [len(y[y["defects"] == True].index), len(y[y["defects"] == False].index)],
+        color="royalblue",
+        edgecolor="green",
+        width=0.4,
+        alpha=0.8,
+    )
+    plt.grid(color="#95a5a6", linestyle="--", linewidth=2, axis="y", alpha=0.7)
+    plt.xlabel("Defect Status")
+    plt.ylabel("Number of files")
+    plt.title("Software Defect Prediction")
+    plt.savefig("reports/figures/preprocess.png", bbox_inches="tight")
+    plt.show()
+
+    # print(list(y))
 
     """
     Handle missing value
+    ! There is no missing value here
     """
-
+    # print(X.isnull().values.any())
 
     """
     Handle/encode categorical data
     """
 
-
     """
     Handle noisy data
     """
 
-
     """
     Handle imbalance dataset
     """
-
+    
 
     """
     Split data train & data test
     """
 
-
     """
     Feature scaling
     """
-
-
-
 
     # return {"X": X, "y": y, "dataset": dataset}
     # return {"X": X, "y": y}
@@ -86,7 +98,11 @@ def preprocess(file):
 def log():
     with open("reports/preprocess.txt", "w") as preprocess_file:
         print("+----- PREPROCESSING LOGGER -----+", file=preprocess_file)
-        print("Timestamp: ", datetime.now().strftime("%H:%M:%S %d-%m-%Y"), file=preprocess_file)
+        print(
+            "Timestamp: ",
+            datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
+            file=preprocess_file,
+        )
         print(
             "Platform: ",
             platform.uname().system
