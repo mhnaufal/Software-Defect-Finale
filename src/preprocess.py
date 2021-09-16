@@ -2,7 +2,7 @@
 --- PREPROCESS ---
 
 'preprocess.py' contains methods to preprocess current dataset (PROMISE dataset)
-into a proper data format that fits the machine learning model(s) and print out the reuslts.
+into a proper data format that fits the machine learning model(s) and print out the results.
 
 This file contains 3 methods with the following details:
     1) 'preprocess' method, which will return features and label from the extracted dataset
@@ -39,8 +39,17 @@ import platform
 
 
 def preprocess(file):
-    """Load the dataset"""
+    """
+    preprocess(file) -> features and label
+        This 'preprocess' method take an argument which is the dataset and 
+        will return the features and label of the given dataset
+    """
+
+    """
+    Load the dataset
+    """
     dataset = pd.read_csv(file)
+    # preprocess_log(file)
 
     """
     Features & label extraction
@@ -77,37 +86,37 @@ def preprocess(file):
 
     """
     Handle imbalance dataset
-    NOTE: We use some different techniques to handle the imbalance data
+    NOTE: We use some of different techniques to handle the imbalance data
     """
-    # RandomOverSampler #
+    #1) RandomOverSampler #
     ros = RandomOverSampler(random_state=3301)
     X_ros, y_ros = ros.fit_resample(X.values, y.values)
     print_bar_diagram(y_ros, "balanced")
 
-    # RandomUnderSampler #
+    #2) RandomUnderSampler #
     # rus = RandomUnderSampler()
 
-    # TomekLinks #
+    #3) TomekLinks ???#
 
-    # SMOTE #
+    #4) SMOTE #
     # smote = SMOTE()
 
-    # ADASYN #
+    #5) ADASYN #
     # adasyn = ADASYN()
 
-    # NearMiss #
+    #6) NearMiss ???#
 
-    # SMOTENC #
+    #7) SMOTENC #
     # smotenc = SMOTENC()
 
-    # SMOTEN #
+    #8) SMOTEN #
     # smoten = SMOTEN()
 
-    # KMeanSmote #
+    #9) KMeanSmote #
     # k_mean_smote = KMeansSMOTE()
 
     """
-    Split data train & data test
+    Split the data train & data test & also the data validation
     """
     X_train, X_test, y_train, y_test = train_test_split(
         X_ros, y_ros, test_size=0.3, random_state=3301
@@ -119,10 +128,9 @@ def preprocess(file):
 
     """
     Feature scaling
-    NOTE: No need for feature scaling for now
+    NOTE: No need for feature scaling (for now)
     """
 
-    # return {"defect": defect, "not": not_defect}
     return X_ros, y_ros, X_train, y_train, X_test, y_test, X_validation, y_validation
 
 
@@ -132,7 +140,7 @@ def preprocess_log(file):
         This method will return a 'running log' of the above 'preprocess' method
     """
 
-    with open("reports/preprocess.txt", "w") as preprocess_file:
+    with open("reports/preprocess.txt", "a") as preprocess_file:
         print("+----- PREPROCESSING LOGGER -----+", file=preprocess_file)
         print(
             "Timestamp: ",
@@ -183,7 +191,7 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Imbalanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Uncomment the following line to save the figure
+        # Uncomment the following line to save the figure inside reports/figures folder
         plt.savefig(
             "reports/figures/preprocess_imbalanced.png", bbox_inches="tight"
         )
@@ -204,7 +212,7 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Balanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Uncomment the following line to save the figure
+        # Uncomment the following line to save the figure inside reports/figures folder
         plt.savefig(
             "reports/figures/preprocess_balanced.png", bbox_inches="tight"
         )
@@ -213,5 +221,3 @@ def print_bar_diagram(label, type):
     else:
         raise Exception("Unknown plotting type")
 
-
-# preprocess_log("datasets/processed/pc4.csv")
