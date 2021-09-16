@@ -94,7 +94,7 @@ $ python src/main.py
 
 ## Credits
 
-Inspired by a lot of other research and study listed in [here](https://github.com/mhnaufal/Software-Defect-Finale/tree/main/references)
+Inspired by many other studies listed in [here](https://github.com/mhnaufal/Software-Defect-Finale/tree/main/references)
 
 ## License
 
