@@ -5,13 +5,17 @@ Machine learning model for 'Software Defect Prediction' with a combination using
 ## General Informations
 
 - Datasets
+  
   Datasets for this project taken from [PROMISE public dataset](http://promise.site.uottawa.ca/SERepository/datasets-page.html)
 
 - Models
+  
   CNN, RNN, LSTM, Random Forest, and more
 
 - Results
+  
   _Soon_
+  
   _Results from running model(s) shown in results folder_
 
 ---
