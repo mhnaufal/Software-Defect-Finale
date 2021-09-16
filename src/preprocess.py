@@ -126,7 +126,7 @@ def preprocess(file):
     return X_ros, y_ros, X_train, y_train, X_test, y_test, X_validation, y_validation
 
 
-def preprocess_log():
+def preprocess_log(file):
     """
     preprocess_log() -> pyplot diagram
         This method will return a 'running log' of the above 'preprocess' method
@@ -150,7 +150,7 @@ def preprocess_log():
         )
         print("Author: ", getpass.getuser(), file=preprocess_file)
         print(file=preprocess_file)
-        print(preprocess("datasets/processed/pc4.csv"), file=preprocess_file)
+        print(preprocess(file), file=preprocess_file)
         print("+--------------------------------+", file=preprocess_file)
 
 
@@ -214,4 +214,4 @@ def print_bar_diagram(label, type):
         raise Exception("Unknown plotting type")
 
 
-preprocess_log()
+# preprocess_log("datasets/processed/pc4.csv")
