@@ -1,8 +1,8 @@
-# Software Defect Prediction
+# Software Defect Prediction ☠
 
 Machine learning model for 'Software Defect Prediction' with a combination using deep learning and based on Python & Tensorflow
 
-## General Informations
+## Introduction
 
 - Datasets
   
@@ -14,9 +14,9 @@ Machine learning model for 'Software Defect Prediction' with a combination using
 
 - Results
   
-  _Soon_
+  _-Soon-_
   
-  _Results from running model(s) shown in results folder_
+  _Results from running model(s) shown in reports folder_
 
 ---
 
@@ -43,7 +43,7 @@ Machine learning model for 'Software Defect Prediction' with a combination using
 ├── models
 │   ├── cnn.py
 │   ├── lstm.py
-│   ├── landom_forest.py
+│   ├── random_forest.py
 │   └── ...
 ├── main.py
 └── preprocess.py
@@ -64,7 +64,7 @@ Clone this repository or download it manual as zip
 $ git clone https://github.com/mhnaufal/Software-Defect-Finale.git
 ```
 
-Open up **cmd** or **Powershell** (Powershell prefered) as Administrator and move to inside this repo directory
+Open up **cmd** or **Powershell** (Powershell prefered) as Administrator and go to this repo directory
 
 Create Python virtual environment:
 
@@ -90,6 +90,12 @@ Run the models:
 
 ```python
 $ python src/main.py
+```
+
+or
+
+```python
+$ python src/models/random_forest.py
 ```
 
 ## Credits

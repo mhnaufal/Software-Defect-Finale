@@ -87,6 +87,7 @@ def preprocess(file):
     """
     Handle imbalance dataset
     NOTE: We use some of different techniques to handle the imbalance data
+    TODO: Try different techniques listed below!
     """
     #1) RandomOverSampler #
     ros = RandomOverSampler(random_state=3301)
