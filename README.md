@@ -56,7 +56,7 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 
 ## Installation
 
-_Windows 10 steps_
+💻 _Windows 10 steps_
 
 Clone this repository or download it manual as zip
 
