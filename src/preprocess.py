@@ -141,7 +141,7 @@ def preprocess_log(file):
         This method will return a 'running log' of the above 'preprocess' method
     """
 
-    with open("reports/preprocess.txt", "a") as preprocess_file:
+    with open("reports/preprocess.txt", "w") as preprocess_file:
         print("+----- PREPROCESSING LOGGER -----+", file=preprocess_file)
         print(
             "Timestamp: ",
@@ -192,10 +192,8 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Imbalanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Uncomment the following line to save the figure inside reports/figures folder
-        plt.savefig(
-            "reports/figures/preprocess_imbalanced.png", bbox_inches="tight"
-        )
+        # Comment/uncomment the following line to save/not save the figure inside reports/figures folder
+        plt.savefig("reports/figures/preprocess_imbalanced.png", bbox_inches="tight")
         # plt.show()
 
     elif type == "balanced":
@@ -213,10 +211,8 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Balanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Uncomment the following line to save the figure inside reports/figures folder
-        plt.savefig(
-            "reports/figures/preprocess_balanced.png", bbox_inches="tight"
-        )
+        # Comment/uncomment the following line to save/not save the figure inside reports/figures folder
+        plt.savefig("reports/figures/preprocess_balanced.png", bbox_inches="tight")
         # plt.show()
 
     else:
