@@ -9,10 +9,10 @@ This file contains 2 methods with the following details:
     
     2) 'cnn_score_log' method, will print out the cnn model score
         by using some well-known performance matrix scoring techniques such as accuracy, recall, AUC, and precision
-        and save it in reports/results/ cnn.txt folder
+        and save it in reports/results/cnn.txt folder
 
 
-Author: anonymouse
+Author: Group of Anonymouse
         Sep 2021
 -------------------
 """
@@ -42,6 +42,12 @@ from tensorflow.keras.losses import BinaryCrossentropy, CategoricalCrossentropy
 
 
 def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
+    """
+    cnn(X_train, X_validation, y_train, y_validation, epochs, batch_size) -> cnn model
+        This method will form a deep learning CNN model and also train the model
+        NOTE: The CNN model below is for classification, not (yet) for feature extraction!
+    """
+
 
     # NOTE: input_shape format is (number_of_rows (y axis), number_of_columns (x axis), number_of_depth (z axis))
     #     : Check whether we need the 'id' column or not for CNN input_shape
@@ -50,11 +56,13 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
     channels = 1
     input_shape = (rows, columns, channels)
 
+    # Reformat the data train and validation to fit CNN input model
     X_train_model = X_train.reshape(X_train.shape[0], rows, columns, channels)
     X_validation_model = X_validation.reshape(
         X_validation.shape[0], rows, columns, channels
     )
 
+    # Create the CNN model
     model = Sequential()
     model.add(Conv2D(64, activation="relu", kernel_size=1, input_shape=input_shape))
     model.add(Conv2D(32, activation="relu", kernel_size=1))
@@ -66,12 +74,14 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
 
     model.summary()
 
+    # Compile the model
     model.compile(
         optimizer="adam",
         loss=BinaryCrossentropy(from_logits=False),
         metrics=["accuracy"],
     )
 
+    # Train the model
     model.fit(
         x=X_train_model,
         y=y_train,
@@ -90,6 +100,8 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
         This method will print out, inside the reports/results/cnn.txt, the random forest model score 
         by using some of the imported performance matrix measurement
     """
+
+
     prompt = input(f'''Choose result output format: 
                     [1] Print output to console
                     [2] Print output to reports folder
@@ -240,7 +252,10 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
     y_validation,
 ) = preprocess("datasets/processed/pc4.csv")  # NOTE: To use different dataset, change the dataset file HERE!
 
+# Instantiate the model
 cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, 10, 35)
+
+# Make a prediction
 y_test_prediction = cnn_model.predict(X_test.reshape(X_test.shape[0], 1, len(X.columns), 1)) > 0.5
 y_validation_prediction = cnn_model.predict(X_validation.reshape(X_validation.shape[0], 1, len(X.columns), 1)) > 0.5
 
