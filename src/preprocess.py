@@ -132,7 +132,7 @@ def preprocess(file):
     NOTE: No need for feature scaling (for now)
     """
 
-    return X_ros, y_ros, X_train, y_train, X_test, y_test, X_validation, y_validation
+    return X, y, X_ros, y_ros, X_train, y_train, X_test, y_test, X_validation, y_validation
 
 
 def preprocess_log(file):

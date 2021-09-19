@@ -11,6 +11,7 @@ This file contains 2 methods with the following details:
     
     2) 'random_forest_score_log' method, will print out the random forest model score
         by using some well-known performance matrix scoring techniques such as accuracy, recall, AUC, and precision
+        and save it in reports/results/random_forest.txt
 
 
 Author: anonymouse
@@ -53,7 +54,7 @@ def random_forest(X_train, y_train):
 
 def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_predict):
     """
-    rendom_forest_score_log(y_test, y_test_predict, y_validation, y_validation_predict) -> model scores
+    random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_predict) -> model scores
         This method will print out, inside the reports/results/random_forest.txt, the random forest model score 
         by using some of the imported performance matrix measurement
     """
@@ -94,6 +95,8 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
 
 """ Main section """
 (
+    X,
+    y,
     X_ros,
     y_ros,
     X_train,
@@ -105,8 +108,8 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
 ) = preprocess("datasets/processed/pc4.csv")    # NOTE: To use different dataset, change the dataset file HERE!
 
 rf_model = random_forest(X_ros, y_ros)
-y_test_predict = rf_model.predict(X_test)
-y_validation_predict = rf_model.predict(X_validation)
+y_test_prediction = rf_model.predict(X_test)
+y_validation_prediction = rf_model.predict(X_validation)
 
-random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_predict)
+random_forest_score_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
 

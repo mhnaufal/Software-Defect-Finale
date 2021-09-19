@@ -1,6 +1,6 @@
-# Software Defect Prediction ☠
+# ☠ Software Defect Prediction
 
-Machine learning model for 'Software Defect Prediction' with a combination using deep learning and based on Python & Tensorflow
+Machine learning model for _'Software Defect Prediction'_ using deep learning and based on Python & Tensorflow
 
 ## Introduction
 
