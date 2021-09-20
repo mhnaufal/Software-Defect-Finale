@@ -25,6 +25,8 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 ```
 │datasets
 ├── processed
+│   └── big_data1.csv
+│   └── big_data2.csv
 │   └── ...
 ├── raw
     └── ...
@@ -34,8 +36,12 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 
 │reports
 ├── figures
+│   └── confussion matrix
+│       └── random_forest.png
+│       └── cnn.png
 │   └── ...
 ├── results
+│   └── random_forest.txt
 │   └── ...
 └── preprocess.txt
 
