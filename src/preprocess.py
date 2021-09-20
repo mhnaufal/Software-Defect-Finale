@@ -192,9 +192,21 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Imbalanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Comment/uncomment the following line to save/not save the figure inside reports/figures folder
-        plt.savefig("reports/figures/preprocess_imbalanced.png", bbox_inches="tight")
-        # plt.show()
+        prompt = input(f'''Choose how you will display the imbalanced data diagram: 
+                    [1] Save diagram to 'reports/figures' folder
+                    [2] Show up the diagram to desktop
+                    [3] Save diagram to 'reports/figures' folder and show up to desktop
+        ''')
+
+        if prompt == str(1):
+            plt.savefig("reports/figures/preprocess_imbalanced.png", bbox_inches="tight")
+        elif prompt == str(2):
+            plt.show()
+        elif prompt == str(3):
+            plt.show()
+            plt.savefig("reports/figures/preprocess_imbalanced.png", bbox_inches="tight")
+        else:
+            raise Exception("ERROR: No such option")
 
     elif type == "balanced":
         plt.bar(
@@ -211,9 +223,21 @@ def print_bar_diagram(label, type):
         plt.suptitle("Software Defect Prediction", fontsize=12, fontweight="bold")
         plt.title(["Balanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
-        # Comment/uncomment the following line to save/not save the figure inside reports/figures folder
-        plt.savefig("reports/figures/preprocess_balanced.png", bbox_inches="tight")
-        # plt.show()
+        prompt = input(f'''Choose how you will display the balanced diagram: 
+                    [1] Save diagram to 'reports/figures' folder
+                    [2] Show up the diagram to desktop
+                    [3] Save diagram to 'reports/figures' folder and show up to desktop
+        ''')
+
+        if prompt == str(1):
+            plt.savefig("reports/figures/preprocess_balanced.png", bbox_inches="tight")
+        elif prompt == str(2):
+            plt.show()
+        elif prompt == str(3):
+            plt.show()
+            plt.savefig("reports/figures/preprocess_balanced.png", bbox_inches="tight")
+        else:
+            raise Exception("ERROR: No such option")
 
     else:
         raise Exception("Unknown plotting type")
