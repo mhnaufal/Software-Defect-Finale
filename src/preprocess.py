@@ -193,14 +193,14 @@ def print_bar_diagram(label, type):
         plt.title(["Imbalanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
         prompt = input(f'''Choose how you will display the imbalanced data diagram: 
-                    [1] Save diagram to 'reports/figures' folder
-                    [2] Show up the diagram to desktop
+                    [1] Show up the diagram to desktop
+                    [2] Save diagram to 'reports/figures' folder
                     [3] Save diagram to 'reports/figures' folder and show up to desktop
         ''')
 
-        if prompt == str(1):
+        if prompt == str(2):
             plt.savefig("reports/figures/preprocess_imbalanced.png", bbox_inches="tight")
-        elif prompt == str(2):
+        elif prompt == str(1):
             plt.show()
         elif prompt == str(3):
             plt.show()
@@ -224,14 +224,14 @@ def print_bar_diagram(label, type):
         plt.title(["Balanced data", datetime.now().strftime("%H:%M:%S %d-%m-%Y")])
 
         prompt = input(f'''Choose how you will display the balanced diagram: 
-                    [1] Save diagram to 'reports/figures' folder
-                    [2] Show up the diagram to desktop
+                    [1] Show up the diagram to desktop
+                    [2] Save diagram to 'reports/figures' folder
                     [3] Save diagram to 'reports/figures' folder and show up to desktop
         ''')
 
-        if prompt == str(1):
+        if prompt == str(2):
             plt.savefig("reports/figures/preprocess_balanced.png", bbox_inches="tight")
-        elif prompt == str(2):
+        elif prompt == str(1):
             plt.show()
         elif prompt == str(3):
             plt.show()
