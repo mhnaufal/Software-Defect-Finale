@@ -67,7 +67,6 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
     model.add(Conv2D(64, activation="relu", kernel_size=1, input_shape=input_shape))
     model.add(Conv2D(32, activation="relu", kernel_size=1))
     model.add(Conv2D(16, activation="relu", kernel_size=1))
-    model.add(Conv2D(16, activation="relu", kernel_size=1))
     model.add(Flatten())
     model.add(Dense(8, activation="relu"))
     model.add(Dense(1, activation="sigmoid"))
@@ -253,7 +252,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
 ) = preprocess("datasets/processed/pc4.csv")  # NOTE: To use different dataset, change the dataset file HERE!
 
 # Instantiate the model
-cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, 10, 35)
+cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, 300, 32)
 
 # Make a prediction
 y_test_prediction = cnn_model.predict(X_test.reshape(X_test.shape[0], 1, len(X.columns), 1)) > 0.5
