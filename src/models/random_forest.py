@@ -35,9 +35,12 @@ from sklearn.metrics import (
     roc_auc_score,
     precision_score,
 )
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import confusion_matrix
 from preprocess import preprocess
 from datetime import datetime
-from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def random_forest(X_train, y_train):
@@ -60,7 +63,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
         by using some of the imported performance matrix measurement
     """
     
-    prompt = input(f'''Choose result output format: 
+    prompt = input(f'''Choose random forest result output format: 
                     [1] Print output to console
                     [2] Print output to reports folder
                     [3] Print output both to console and reports folder
@@ -96,7 +99,36 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
         print("| Recal        : ", recall_score(y_validation, y_validation_predict))
         print("|---------------------------------|")
         print("+---------------------------------+")
+        
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_predict)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_predict).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.show()
+    
     elif prompt == str(2):
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_predict)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_predict).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.savefig("reports/figures/confussion matrixs/random_forest.png", bbox_inches="tight")
+        
         with open("reports/results/random_forest.txt", "a") as random_forest_file:
             print("+----- RANDOM FOREST LOGGER ------+", file=random_forest_file)
             print(
@@ -129,6 +161,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
             print("| Recal        : ", recall_score(y_validation, y_validation_predict), file=random_forest_file)
             print("|---------------------------------|", file=random_forest_file)
             print("+---------------------------------+", file=random_forest_file)
+    
     elif prompt == str(3):
         print("+----- RANDOM FOREST LOGGER ------+")
         print(
@@ -160,6 +193,21 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
         print("|---------------------------------|")
         print("+---------------------------------+")
 
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_predict)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_predict).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.savefig("reports/figures/confussion matrixs/random_forest.png", bbox_inches="tight")
+        plt.show()
+
         with open("reports/results/random_forest.txt", "a") as random_forest_file:
             print("+----- RANDOM FOREST LOGGER ------+", file=random_forest_file)
             print(
@@ -192,6 +240,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
             print("| Recal        : ", recall_score(y_validation, y_validation_predict), file=random_forest_file)
             print("|---------------------------------|", file=random_forest_file)
             print("+---------------------------------+", file=random_forest_file)
+    
     else:
         raise Exception("ERROR: No such option")
 
@@ -208,7 +257,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
     y_test,
     X_validation,
     y_validation,
-) = preprocess("datasets/processed/pc4.csv")    # NOTE: To use different dataset, change the dataset file HERE!
+) = preprocess("datasets/processed/big_data1.csv")    # NOTE: To use different dataset, change the dataset file HERE!
 
 rf_model = random_forest(X_ros, y_ros)
 y_test_prediction = rf_model.predict(X_test)
