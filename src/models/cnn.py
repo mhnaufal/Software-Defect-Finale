@@ -22,6 +22,7 @@ import sys
 import platform
 import getpass
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -88,7 +89,7 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
         validation_data=(X_validation_model, y_validation),
         verbose=1,
     )
-    import matplotlib.pyplot as plt
+
     plt.plot(history.history["val_loss"], color='g', label="val_loss")  
     plt.plot(history.history["loss"], color='r', label="loss")
     plt.ylim(bottom=0)
