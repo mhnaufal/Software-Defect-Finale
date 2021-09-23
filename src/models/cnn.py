@@ -66,9 +66,8 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
     model = Sequential()
     model.add(Conv2D(64, activation="relu", kernel_size=1, input_shape=input_shape))
     model.add(Conv2D(32, activation="relu", kernel_size=1))
-    model.add(Conv2D(16, activation="relu", kernel_size=1))
     model.add(Flatten())
-    model.add(Dense(8, activation="relu"))
+    model.add(Dense(16, activation="relu"))
     model.add(Dense(1, activation="sigmoid"))
 
     model.summary()
@@ -81,7 +80,7 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
     )
 
     # Train the model
-    model.fit(
+    history = model.fit(
         x=X_train_model,
         y=y_train,
         epochs=epochs,
@@ -89,7 +88,23 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
         validation_data=(X_validation_model, y_validation),
         verbose=1,
     )
+    import matplotlib.pyplot as plt
+    plt.plot(history.history["val_loss"], color='g', label="val_loss")  
+    plt.plot(history.history["loss"], color='r', label="loss")
+    plt.ylim(bottom=0)
+    plt.ylim(top=1)
+    plt.title("loss")
+    plt.legend()
+    plt.show()
 
+    plt.plot(history.history["accuracy"], color='r', label="accuracy")  
+    plt.plot(history.history["val_accuracy"], color='g', label="val_accuracy")
+    plt.ylim(bottom=0)
+    plt.ylim(top=1)
+    plt.title("accuracy")
+    plt.legend()
+    plt.show()
+    
     return model
 
 
@@ -259,20 +274,3 @@ y_test_prediction = cnn_model.predict(X_test.reshape(X_test.shape[0], 1, len(X.c
 y_validation_prediction = cnn_model.predict(X_validation.reshape(X_validation.shape[0], 1, len(X.columns), 1)) > 0.5
 
 cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
-
-import matplotlib.pyplot as plt
-plt.plot(history.history["val_loss"], color='g', label="val_loss")
-plt.plot(history.history["loss"], color='r', label="loss")
-plt.ylim(bottom=0)
-plt.ylim(top=1)
-plt.title("loss")
-plt.legend()
-plt.show()
-
-plt.plot(history.history["accuracy"], color='r', label="accuracy")
-plt.plot(history.history["val_accuracy"], color='g', label="val_accuracy")
-plt.ylim(bottom=0)
-plt.ylim(top=1)
-plt.title("accuracy")
-plt.legend()
-plt.show()
