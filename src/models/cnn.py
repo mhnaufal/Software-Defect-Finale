@@ -11,6 +11,8 @@ This file contains 2 methods with the following details:
         by using some well-known performance matrix scoring techniques such as accuracy, recall, AUC, and precision
         and save it in reports/results/cnn.txt folder
 
+    3) 'console_log' method, the actual cnn logger which is used in 'cnn_score_log' method
+
 
 Author: Group of Anonymouse
         Sep 2021
@@ -41,6 +43,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Dropout, Flatten, MaxPooling2D
 from tensorflow.keras.losses import BinaryCrossentropy, CategoricalCrossentropy
 
+
+EPOCHS = 300
+BATCH_SIZE = 32
 
 def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
     """
@@ -124,134 +129,54 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
     ''')
 
     if prompt == str(1):
-        print("+----- CNN LOGGER ------+")
-        print(
-            "Timestamp: ",
-            datetime.now().strftime("%H:%M:%S %d-%m-%Y")
-        )
-        print(
-            "Platform: ",
-            platform.uname().system
-            + " - "
-            + platform.uname().node
-            + " - "
-            + platform.uname().machine
-        )
-        print("Author: ", getpass.getuser())
-        print()
-        print("|---------- Test Score -----------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_test, y_test_prediction))
-        print("| Precision    : ", precision_score(y_test, y_test_prediction))
-        print("| AUC          : ", roc_auc_score(y_test, y_test_prediction))
-        print("| Recal        : ", recall_score(y_test, y_test_prediction))
-        print("|------- Validation Score --------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_validation, y_validation_prediction))
-        print("| Precision    : ", precision_score(y_validation, y_validation_prediction))
-        print("| AUC          : ", roc_auc_score(y_validation, y_validation_prediction))
-        print("| Recal        : ", recall_score(y_validation, y_validation_prediction))
-        print("|---------------------------------|")
-        print("+---------------------------------+")
+        console_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
     elif prompt == str(2):
         with open("reports/results/cnn.txt", "a") as cnn_file:
-            print("+----- CNN LOGGER ------+", file=cnn_file)
-            print(
-                "Timestamp: ",
-                datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-                file=cnn_file,
-            )
-            print(
-                "Platform: ",
-                platform.uname().system
-                + " - "
-                + platform.uname().node
-                + " - "
-                + platform.uname().machine,
-                file=cnn_file,
-            )
-            print("Author: ", getpass.getuser(), file=cnn_file)
-            print(file=cnn_file)
-            print("|---------- Test Score -----------|", file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("| Accuracy     : ", accuracy_score(y_test, y_test_prediction), file=cnn_file)
-            print("| Precision    : ", precision_score(y_test, y_test_prediction), file=cnn_file)
-            print("| AUC          : ", roc_auc_score(y_test, y_test_prediction), file=cnn_file)
-            print("| Recal        : ", recall_score(y_test, y_test_prediction), file=cnn_file)
-            print("|------- Validation Score --------|", file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("| Accuracy     : ", accuracy_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| Precision    : ", precision_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| AUC          : ", roc_auc_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| Recal        : ", recall_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("+---------------------------------+", file=cnn_file)
+            console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, cnn_file)
     elif prompt == str(3):
-        print("+----- CNN LOGGER ------+")
-        print(
-            "Timestamp: ",
-            datetime.now().strftime("%H:%M:%S %d-%m-%Y")
-        )
-        print(
-            "Platform: ",
-            platform.uname().system
-            + " - "
-            + platform.uname().node
-            + " - "
-            + platform.uname().machine
-        )
-        print("Author: ", getpass.getuser())
-        print()
-        print("|---------- Test Score -----------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_test, y_test_prediction))
-        print("| Precision    : ", precision_score(y_test, y_test_prediction))
-        print("| AUC          : ", roc_auc_score(y_test, y_test_prediction))
-        print("| Recal        : ", recall_score(y_test, y_test_prediction))
-        print("|------- Validation Score --------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_validation, y_validation_prediction))
-        print("| Precision    : ", precision_score(y_validation, y_validation_prediction))
-        print("| AUC          : ", roc_auc_score(y_validation, y_validation_prediction))
-        print("| Recal        : ", recall_score(y_validation, y_validation_prediction))
-        print("|---------------------------------|")
-        print("+---------------------------------+")
+        console_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
 
         with open("reports/results/cnn.txt", "a") as cnn_file:
-            print("+----- CNN LOGGER ------+", file=cnn_file)
-            print(
-                "Timestamp: ",
-                datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-                file=cnn_file,
-            )
-            print(
-                "Platform: ",
-                platform.uname().system
-                + " - "
-                + platform.uname().node
-                + " - "
-                + platform.uname().machine,
-                file=cnn_file,
-            )
-            print("Author: ", getpass.getuser(), file=cnn_file)
-            print(file=cnn_file)
-            print("|---------- Test Score -----------|", file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("| Accuracy     : ", accuracy_score(y_test, y_test_prediction), file=cnn_file)
-            print("| Precision    : ", precision_score(y_test, y_test_prediction), file=cnn_file)
-            print("| AUC          : ", roc_auc_score(y_test, y_test_prediction), file=cnn_file)
-            print("| Recal        : ", recall_score(y_test, y_test_prediction), file=cnn_file)
-            print("|------- Validation Score --------|", file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("| Accuracy     : ", accuracy_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| Precision    : ", precision_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| AUC          : ", roc_auc_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("| Recal        : ", recall_score(y_validation, y_validation_prediction), file=cnn_file)
-            print("|---------------------------------|", file=cnn_file)
-            print("+---------------------------------+", file=cnn_file)
+            console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, cnn_file)
     else:
         raise Exception("ERROR: No such option")
 
+
+def console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, file=None):
+    print("+----- CNN LOGGER ------+", file=file)
+    print(
+        "Timestamp: ",
+        datetime.now().strftime("%H:%M:%S %d-%m-%Y"), 
+        file=file
+    )
+    print(
+        "Platform: ",
+        platform.uname().system
+        + " - "
+        + platform.uname().node
+        + " - "
+        + platform.uname().machine, 
+        file=file
+    )
+    print("Author: ", getpass.getuser(), file=file)
+    print(file=file)
+    print("|---------- Test Score -----------|", file=file)
+    print("|---------------------------------|", file=file)
+    print("| Accuracy     : ", accuracy_score(y_test, y_test_prediction), file=file)
+    print("| Precision    : ", precision_score(y_test, y_test_prediction), file=file)
+    print("| AUC          : ", roc_auc_score(y_test, y_test_prediction), file=file)
+    print("| Recal        : ", recall_score(y_test, y_test_prediction), file=file)
+    print("|------- Validation Score --------|", file=file)
+    print("|---------------------------------|", file=file)
+    print("| Accuracy     : ", accuracy_score(y_validation, y_validation_prediction), file=file)
+    print("| Precision    : ", precision_score(y_validation, y_validation_prediction), file=file)
+    print("| AUC          : ", roc_auc_score(y_validation, y_validation_prediction), file=file)
+    print("| Recal        : ", recall_score(y_validation, y_validation_prediction), file=file)
+    print("|---------------------------------|", file=file)
+    print("+---------------------------------+", file=file)
+    print()
+
+    return
 
 """ Main section """
 (
@@ -268,7 +193,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
 ) = preprocess("datasets/processed/pc4.csv")  # NOTE: To use different dataset, change the dataset file HERE!
 
 # Instantiate the model
-cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, 300, 32)
+cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, EPOCHS, BATCH_SIZE)
 
 # Make a prediction
 y_test_prediction = cnn_model.predict(X_test.reshape(X_test.shape[0], 1, len(X.columns), 1)) > 0.5
