@@ -68,6 +68,9 @@ def cnn(X, X_train, X_validation, y_train, y_validation, epochs, batch_size):
         X_validation.shape[0], rows, columns, channels
     )
 
+    # NOTE: Optional model remover before creating a new model
+    tf.keras.backend.clear_session()
+
     # Create the CNN model
     model = Sequential()
     model.add(Conv2D(64, activation="relu", kernel_size=1, input_shape=input_shape))
