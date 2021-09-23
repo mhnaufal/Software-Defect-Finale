@@ -241,8 +241,8 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
 (
     X,
     y,
-    X_ros,
-    y_ros,
+    X_scaled,
+    y_scaled,
     X_train,
     y_train,
     X_test,
