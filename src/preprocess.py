@@ -20,15 +20,21 @@ Author: anonymouse
 """
 
 from datetime import datetime
+from imblearn.under_sampling import (
+    RandomUnderSampler,
+    ClusterCentroids,
+    NearMiss,
+    CondensedNearestNeighbour,
+    AllKNN,
+    OneSidedSelection
+)
 from imblearn.over_sampling import (
     RandomOverSampler,
     SMOTE,
-    ADASYN,
     SMOTEN,
-    SMOTENC,
-    KMeansSMOTE,
+    ADASYN,
+    SVMSMOTE
 )
-from imblearn.under_sampling import RandomUnderSampler
 from sklearn.model_selection import train_test_split
 import getpass
 import matplotlib.pyplot as plt
@@ -93,38 +99,72 @@ def preprocess(file):
     NOTE: We use some of different techniques to handle the imbalance data
     TODO: Try different techniques listed below!
     """
+    ##### Undersampling
+    #1) RandomUnderSampler #
+    #rus = RandomUnderSampler(random_state=0)
+    #X_scaled, y_scaled = rus.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #2) ClusterCentroids #
+    #cc = ClusterCentroids(random_state=42)
+    #X_scaled, y_scaled = cc.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #3) NearMiss #
+    #nm = NearMiss()
+    #X_scaled, y_scaled = nm.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #4) CondensedNearestNeighbour #
+    #cn = CondensedNearestNeighbour(random_state=0) 
+    #X_scaled, y_scaled = cn.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #5) AllKNN #
+    #allknn = AllKNN()
+    #X_scaled, y_scaled = allknn.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #6) OneSidedSelection #
+    #oss = OneSidedSelection(random_state=0)
+    #X_scaled, y_scaled = oss.fit_resample(X.values, y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    
+    ##### Oversampling
     #1) RandomOverSampler #
-    ros = RandomOverSampler(random_state=3301)
-    X_ros, y_ros = ros.fit_resample(X.values, y.values)
-    print_bar_diagram(y_ros, "balanced")
+    ros = RandomOverSampler(sampling_strategy='minority', random_state=0)
+    X_scaled, y_scaled = ros.fit_resample(X.values, y.values)
+    print_bar_diagram(y_scaled, "balanced")
 
-    #2) RandomUnderSampler #
-    # rus = RandomUnderSampler()
-
-    #3) TomekLinks ???#
-
-    #4) SMOTE #
-    # smote = SMOTE()
-
-    #5) ADASYN #
-    # adasyn = ADASYN()
-
-    #6) NearMiss ???#
-
-    #7) SMOTENC #
-    # smotenc = SMOTENC()
-
-    #8) SMOTEN #
-    # smoten = SMOTEN()
-
-    #9) KMeanSmote #
-    # k_mean_smote = KMeansSMOTE()
-
+    #2) SMOTE #
+    #sm = SMOTE(sampling_strategy='minority', random_state=0)
+    #X_scaled, y_scaled = sm.fit_resample(X.values,y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #3) SMOTEN #
+    #smn = SMOTEN(sampling_strategy='minority', random_state=0)
+    #X_scaled, y_scaled = smn.fit_resample(X.values,y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #4) ADASYN #
+    #ads = ADASYN(sampling_strategy='minority', random_state=0)
+    #X_scaled, y_scaled = ads.fit_resample(X.values,y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    #5) SVMSMOTE #
+    #svm = KMeansSMOTE(sampling_strategy='minority', random_state=0)
+    #X_scaled, y_scaled = svm.fit_resample(X.values,y.values)
+    #print_bar_diagram(y_scaled, "balanced")
+    
+    scaler = MinMaxScaler()
+    X_scaled = scaler.fit_transform(X_scaled)
+    
     """
     Split the data train & data test & also the data validation
     """
     X_train, X_test, y_train, y_test = train_test_split(
-        X_ros, y_ros, test_size=0.3, random_state=3301
+        X_scaled, y_scaled, test_size=0.3, random_state=3301
     )
 
     X_train, X_validation, y_train, y_validation = train_test_split(
@@ -136,7 +176,7 @@ def preprocess(file):
     NOTE: No need for feature scaling (for now)
     """
 
-    return X, y, X_ros, y_ros, X_train, y_train, X_test, y_test, X_validation, y_validation
+    return X, y, X_scaled, y_scaled, X_train, y_train, X_test, y_test, X_validation, y_validation
 
 
 def preprocess_log(file):
