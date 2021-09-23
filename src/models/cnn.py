@@ -260,3 +260,19 @@ y_validation_prediction = cnn_model.predict(X_validation.reshape(X_validation.sh
 
 cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
 
+import matplotlib.pyplot as plt
+plt.plot(history.history["val_loss"], color='g', label="val_loss")
+plt.plot(history.history["loss"], color='r', label="loss")
+plt.ylim(bottom=0)
+plt.ylim(top=1)
+plt.title("loss")
+plt.legend()
+plt.show()
+
+plt.plot(history.history["accuracy"], color='r', label="accuracy")
+plt.plot(history.history["val_accuracy"], color='g', label="val_accuracy")
+plt.ylim(bottom=0)
+plt.ylim(top=1)
+plt.title("accuracy")
+plt.legend()
+plt.show()
