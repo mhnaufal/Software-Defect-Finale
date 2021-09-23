@@ -13,6 +13,8 @@ This file contains 2 methods with the following details:
         by using some well-known performance matrix scoring techniques such as accuracy, recall, AUC, and precision
         and save it in reports/results/random_forest.txt
 
+    3) 'console_log' method, the actual random forest logger which is used in 'random_forest_score_log' method
+
 
 Author: Group of Anonymouse
         Sep 2021
@@ -70,35 +72,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
     ''')
 
     if prompt == str(1):
-        print("+----- RANDOM FOREST LOGGER ------+")
-        print(
-            "Timestamp: ",
-            datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-        )
-        print(
-            "Platform: ",
-            platform.uname().system
-            + " - "
-            + platform.uname().node
-            + " - "
-            + platform.uname().machine,
-        )
-        print("Author: ", getpass.getuser())
-        print()
-        print("|---------- Test Score -----------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_test, y_test_predict))
-        print("| Precision    : ", precision_score(y_test, y_test_predict))
-        print("| AUC          : ", roc_auc_score(y_test, y_test_predict))
-        print("| Recal        : ", recall_score(y_test, y_test_predict))
-        print("|------- Validation Score --------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_validation, y_validation_predict))
-        print("| Precision    : ", precision_score(y_validation, y_validation_predict))
-        print("| AUC          : ", roc_auc_score(y_validation, y_validation_predict))
-        print("| Recal        : ", recall_score(y_validation, y_validation_predict))
-        print("|---------------------------------|")
-        print("+---------------------------------+")
+        console_log(y_test, y_test_predict, y_validation, y_validation_predict)
         
         ### Create the confussion matrix
         cm = confusion_matrix(y_test, y_test_predict)
@@ -130,68 +104,11 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
         plt.savefig("reports/figures/confussion matrixs/random_forest.png", bbox_inches="tight")
         
         with open("reports/results/random_forest.txt", "a") as random_forest_file:
-            print("+----- RANDOM FOREST LOGGER ------+", file=random_forest_file)
-            print(
-                "Timestamp: ",
-                datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-                file=random_forest_file,
-            )
-            print(
-                "Platform: ",
-                platform.uname().system
-                + " - "
-                + platform.uname().node
-                + " - "
-                + platform.uname().machine,
-                file=random_forest_file,
-            )
-            print("Author: ", getpass.getuser(), file=random_forest_file)
-            print(file=random_forest_file)
-            print("|---------- Test Score -----------|", file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("| Accuracy     : ", accuracy_score(y_test, y_test_predict), file=random_forest_file)
-            print("| Precision    : ", precision_score(y_test, y_test_predict), file=random_forest_file)
-            print("| AUC          : ", roc_auc_score(y_test, y_test_predict), file=random_forest_file)
-            print("| Recal        : ", recall_score(y_test, y_test_predict), file=random_forest_file)
-            print("|------- Validation Score --------|", file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("| Accuracy     : ", accuracy_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| Precision    : ", precision_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| AUC          : ", roc_auc_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| Recal        : ", recall_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("+---------------------------------+", file=random_forest_file)
+            console_log(y_test, y_test_predict, y_validation, y_validation_predict, random_forest_file)
+
     
     elif prompt == str(3):
-        print("+----- RANDOM FOREST LOGGER ------+")
-        print(
-            "Timestamp: ",
-            datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-        )
-        print(
-            "Platform: ",
-            platform.uname().system
-            + " - "
-            + platform.uname().node
-            + " - "
-            + platform.uname().machine,
-        )
-        print("Author: ", getpass.getuser())
-        print()
-        print("|---------- Test Score -----------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_test, y_test_predict))
-        print("| Precision    : ", precision_score(y_test, y_test_predict))
-        print("| AUC          : ", roc_auc_score(y_test, y_test_predict))
-        print("| Recal        : ", recall_score(y_test, y_test_predict))
-        print("|------- Validation Score --------|")
-        print("|---------------------------------|")
-        print("| Accuracy     : ", accuracy_score(y_validation, y_validation_predict))
-        print("| Precision    : ", precision_score(y_validation, y_validation_predict))
-        print("| AUC          : ", roc_auc_score(y_validation, y_validation_predict))
-        print("| Recal        : ", recall_score(y_validation, y_validation_predict))
-        print("|---------------------------------|")
-        print("+---------------------------------+")
+        console_log(y_test, y_test_predict, y_validation, y_validation_predict)
 
         ### Create the confussion matrix
         cm = confusion_matrix(y_test, y_test_predict)
@@ -209,40 +126,47 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
         plt.show()
 
         with open("reports/results/random_forest.txt", "a") as random_forest_file:
-            print("+----- RANDOM FOREST LOGGER ------+", file=random_forest_file)
-            print(
-                "Timestamp: ",
-                datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
-                file=random_forest_file,
-            )
-            print(
-                "Platform: ",
-                platform.uname().system
-                + " - "
-                + platform.uname().node
-                + " - "
-                + platform.uname().machine,
-                file=random_forest_file,
-            )
-            print("Author: ", getpass.getuser(), file=random_forest_file)
-            print(file=random_forest_file)
-            print("|---------- Test Score -----------|", file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("| Accuracy     : ", accuracy_score(y_test, y_test_predict), file=random_forest_file)
-            print("| Precision    : ", precision_score(y_test, y_test_predict), file=random_forest_file)
-            print("| AUC          : ", roc_auc_score(y_test, y_test_predict), file=random_forest_file)
-            print("| Recal        : ", recall_score(y_test, y_test_predict), file=random_forest_file)
-            print("|------- Validation Score --------|", file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("| Accuracy     : ", accuracy_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| Precision    : ", precision_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| AUC          : ", roc_auc_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("| Recal        : ", recall_score(y_validation, y_validation_predict), file=random_forest_file)
-            print("|---------------------------------|", file=random_forest_file)
-            print("+---------------------------------+", file=random_forest_file)
+            console_log(y_test, y_test_predict, y_validation, y_validation_predict, random_forest_file)
     
     else:
         raise Exception("ERROR: No such option")
+
+
+def console_log(y_test, y_test_predict, y_validation, y_validation_predict, file=None):
+    print("+----- RANDOM FOREST LOGGER ------+",file=file)
+    print(
+        "Timestamp: ",
+        datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
+        file=file
+    )
+    print(
+        "Platform: ",
+        platform.uname().system
+        + " - "
+        + platform.uname().node
+        + " - "
+        + platform.uname().machine,
+        file=file
+    )
+    print("Author: ", getpass.getuser(), file=file)
+    print(file=file)
+    print("|---------- Test Score -----------|",file=file)
+    print("|---------------------------------|", file=file)
+    print("| Accuracy     : ", accuracy_score(y_test, y_test_predict), file=file)
+    print("| Precision    : ", precision_score(y_test, y_test_predict), file=file)
+    print("| AUC          : ", roc_auc_score(y_test, y_test_predict), file=file)
+    print("| Recal        : ", recall_score(y_test, y_test_predict), file=file)
+    print("|------- Validation Score --------|", file=file)
+    print("|---------------------------------|", file=file)
+    print("| Accuracy     : ", accuracy_score(y_validation, y_validation_predict), file=file)
+    print("| Precision    : ", precision_score(y_validation, y_validation_predict), file=file)
+    print("| AUC          : ", roc_auc_score(y_validation, y_validation_predict), file=file)
+    print("| Recal        : ", recall_score(y_validation, y_validation_predict), file=file)
+    print("|---------------------------------|", file=file)
+    print("+---------------------------------+", file=file)
+    print()
+
+    return
 
 
 """ Main section """
