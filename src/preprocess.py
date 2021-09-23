@@ -64,7 +64,7 @@ def preprocess(file):
     # Select only feature with the absolute of correlation > 0.1
     features = dataset.corr()["defects"].loc[abs(dataset.corr()["defects"]) > 0.1].sort_values().index.values.tolist()
     
-    X = pd.DataFrame(dataset[features[:-1])
+    X = pd.DataFrame(dataset[features[:-1]])
     y = pd.DataFrame(dataset["defects"])
 
     ### Count how many defects and not defects data
