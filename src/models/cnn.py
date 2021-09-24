@@ -195,7 +195,7 @@ def console_log(y_test, y_test_prediction, y_validation, y_validation_prediction
     y_validation,
 ) = preprocess("datasets/processed/pc4.csv")  # NOTE: To use different dataset, change the dataset file HERE!
 
-# Instantiate the model
+# Initiate the model
 cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, EPOCHS, BATCH_SIZE)
 
 # Make a prediction
