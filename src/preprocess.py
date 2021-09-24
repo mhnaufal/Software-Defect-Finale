@@ -35,6 +35,7 @@ from imblearn.over_sampling import (
     ADASYN,
     SVMSMOTE
 )
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 import getpass
 import matplotlib.pyplot as plt
