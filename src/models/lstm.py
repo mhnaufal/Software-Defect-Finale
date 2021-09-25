@@ -72,11 +72,11 @@ def lstm(X_train, X_validation, y_train, y_validation, epochs, batch_size):
     # Create LSTM model
     model = Sequential()
     model.add(LSTM(64, return_sequences=True, input_shape=input_shape))
-    model.add(Dropout(0.2))
+    model.add(Dropout(0.6))
     model.add(LSTM(32, return_sequences=True))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.6))
     model.add(LSTM(32, return_sequences=False))
-    # model.add(Dropout(0.25))
+    model.add(Dropout(0.65))
     model.add(Dense(1, activation="sigmoid"))
 
     model.summary()
