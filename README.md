@@ -64,7 +64,7 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 
 💻 _Windows 10 steps_
 
-Clone this repository or download it manual as zip
+Clone this repository or download it manual as a zip
 
 ```bash
 $ git clone https://github.com/mhnaufal/Software-Defect-Finale.git
