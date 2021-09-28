@@ -25,6 +25,8 @@ import os
 import sys
 import platform
 import getpass
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -41,8 +43,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import confusion_matrix
 from preprocess import preprocess
 from datetime import datetime
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 def random_forest(X_train, y_train):
@@ -181,7 +181,7 @@ def console_log(y_test, y_test_predict, y_validation, y_validation_predict, file
     y_test,
     X_validation,
     y_validation,
-) = preprocess("datasets/processed/big_data1.csv")    # NOTE: To use different dataset, change the dataset file HERE!
+) = preprocess("datasets/processed/pc4.csv")    # NOTE: To use different dataset, change the dataset file HERE!
 
 rf_model = random_forest(X_ros, y_ros)
 y_test_prediction = rf_model.predict(X_test)
