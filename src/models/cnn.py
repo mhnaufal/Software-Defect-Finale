@@ -25,6 +25,7 @@ import platform
 import getpass
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -39,6 +40,7 @@ from sklearn.metrics import (
 )
 from preprocess import preprocess
 from datetime import datetime
+from sklearn.metrics import confusion_matrix
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Dropout, Flatten, MaxPooling2D
 from tensorflow.keras.losses import BinaryCrossentropy, CategoricalCrossentropy
@@ -133,14 +135,60 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
 
     if prompt == str(1):
         console_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
+
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_prediction)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_prediction).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.show()
+
     elif prompt == str(2):
-        with open("reports/results/cnn.txt", "a") as cnn_file:
-            console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, cnn_file)
-    elif prompt == str(3):
-        console_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_prediction)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_prediction).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.savefig("reports/figures/confussion matrixs/cnn.png", bbox_inches="tight")
 
         with open("reports/results/cnn.txt", "a") as cnn_file:
             console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, cnn_file)
+
+    elif prompt == str(3):
+        console_log(y_test, y_test_prediction, y_validation, y_validation_prediction)
+
+        ### Create the confussion matrix
+        cm = confusion_matrix(y_test, y_test_prediction)
+        tn, fp, fn, tp = confusion_matrix(y_test, y_test_prediction).ravel()
+        cm = [[tp, fp], [fn, tn]]
+        
+        ax = sns.heatmap(cm, annot=True, fmt = "d", cmap="YlGnBu", linewidths=.5, linecolor="gray")
+        ax.set_xlabel('ACTUAL LABELS', fontweight="bold")
+        ax.set_ylabel('PREDICTED LABELS', fontweight="bold") 
+        ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
+        ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
+        ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
+        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.savefig("reports/figures/confussion matrixs/cnn.png", bbox_inches="tight")
+        plt.show()
+
+        with open("reports/results/cnn.txt", "a") as cnn_file:
+            console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, cnn_file)
+            
     else:
         raise Exception("ERROR: No such option")
 
