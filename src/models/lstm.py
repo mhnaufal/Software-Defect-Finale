@@ -162,6 +162,7 @@ def console_log(y_test, y_test_prediction, y_validation, y_validation_prediction
         file=file
     )
     print("Author: ", getpass.getuser(), file=file)
+    print("File: ", file)
     print(file=file)
     print("|---------- Test Score -----------|", file=file)
     print("|---------------------------------|", file=file)
