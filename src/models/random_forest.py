@@ -133,7 +133,7 @@ def random_forest_score_log(y_test, y_test_predict, y_validation, y_validation_p
 
 
 def console_log(y_test, y_test_predict, y_validation, y_validation_predict, file=None):
-    print("+----- RANDOM FOREST LOGGER ------+",file=file)
+    print("\n+----- RANDOM FOREST LOGGER ------+", file=file)
     print(
         "Timestamp: ",
         datetime.now().strftime("%H:%M:%S %d-%m-%Y"),
@@ -149,8 +149,8 @@ def console_log(y_test, y_test_predict, y_validation, y_validation_predict, file
         file=file
     )
     print("Author: ", getpass.getuser(), file=file)
-    print(file=file)
-    print("|---------- Test Score -----------|",file=file)
+    # print("File: ", file, file=file)
+    print("|---------- Test Score -----------|", file=file)
     print("|---------------------------------|", file=file)
     print("| Accuracy     : ", accuracy_score(y_test, y_test_predict), file=file)
     print("| Precision    : ", precision_score(y_test, y_test_predict), file=file)
@@ -181,7 +181,7 @@ def console_log(y_test, y_test_predict, y_validation, y_validation_predict, file
     y_test,
     X_validation,
     y_validation,
-) = preprocess("datasets/processed/pc4.csv")    # NOTE: To use different dataset, change the dataset file HERE!
+) = preprocess("datasets/processed/big_data1.csv")    # NOTE: To use different dataset, change the dataset file HERE!
 
 rf_model = random_forest(X_ros, y_ros)
 y_test_prediction = rf_model.predict(X_test)
