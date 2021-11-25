@@ -147,7 +147,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
         ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
         ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
         ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
-        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.suptitle("CNN Confussion Matrix", fontsize=12, fontweight="bold")
         plt.show()
 
     elif prompt == str(2):
@@ -162,7 +162,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
         ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
         ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
         ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
-        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.suptitle("CNN Confussion Matrix", fontsize=12, fontweight="bold")
         plt.savefig("reports/figures/confussion matrixs/cnn.png", bbox_inches="tight")
 
         with open("reports/results/cnn.txt", "a") as cnn_file:
@@ -182,7 +182,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
         ax.set_title(datetime.now().strftime("%H:%M:%S %d-%m-%Y"))
         ax.xaxis.set_ticklabels(['Defect', 'Not Defect'])
         ax.yaxis.set_ticklabels(['Defect', 'Not Defect'])
-        plt.suptitle("Random Forest Confussion Matrix", fontsize=12, fontweight="bold")
+        plt.suptitle("CNN Confussion Matrix", fontsize=12, fontweight="bold")
         plt.savefig("reports/figures/confussion matrixs/cnn.png", bbox_inches="tight")
         plt.show()
 
@@ -194,7 +194,7 @@ def cnn_score_log(y_test, y_test_prediction, y_validation, y_validation_predicti
 
 
 def console_log(y_test, y_test_prediction, y_validation, y_validation_prediction, file=None):
-    print("+----- CNN LOGGER ------+", file=file)
+    print("\n+----- CNN LOGGER ------+", file=file)
     print(
         "Timestamp: ",
         datetime.now().strftime("%H:%M:%S %d-%m-%Y"), 
@@ -241,7 +241,7 @@ def console_log(y_test, y_test_prediction, y_validation, y_validation_prediction
     y_test,
     X_validation,
     y_validation,
-) = preprocess("datasets/processed/pc4.csv")  # NOTE: To use different dataset, change the dataset file HERE!
+) = preprocess("datasets/processed/big_data1.csv")  # NOTE: To use different dataset, change the dataset file HERE!
 
 # Initiate the model
 cnn_model = cnn(X, X_train, X_validation, y_train, y_validation, EPOCHS, BATCH_SIZE)
