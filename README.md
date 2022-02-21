@@ -45,12 +45,11 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 │       └── lstm.png
 │   └── preprocess_balanced.png
 │   └── preprocess_imbalanced.png
-│   └── ...
 ├── results
 │   └── random_forest.txt
 │   └── cnn.txt
 │   └── lstm.txt
-│   └── ...
+├── PAPER-Software Defect Prediction.pdf
 └── preprocess.txt
 └── PAPER-Software Defect Prediction
 │src
@@ -58,7 +57,6 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 │   ├── cnn.py
 │   ├── lstm.py
 │   ├── random_forest.py
-│   └── ...
 ├── main.py
 └── preprocess.py
 
