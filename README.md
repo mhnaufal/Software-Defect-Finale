@@ -15,6 +15,7 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 - Results
   
   [Results directory](https://github.com/mhnaufal/Software-Defect-Finale/tree/main/reports)
+  [Paper](https://github.com/mhnaufal/Software-Defect-Finale/blob/main/reports/PAPER-Software%20Defect%20Prediction.pdf)
   
   _Results from running model(s) shown in reports folder_
 
@@ -50,7 +51,7 @@ Machine learning model for _'Software Defect Prediction'_ using deep learning an
 │   └── lstm.txt
 ├── PAPER-Software Defect Prediction.pdf
 └── preprocess.txt
-
+└── PAPER-Software Defect Prediction
 │src
 ├── models
 │   ├── cnn.py
